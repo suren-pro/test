@@ -1,4 +1,5 @@
 ﻿using IModelRepository;
+using IModelRepository.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,7 +17,7 @@ namespace DataAccessLayer.Models
         public string Role { get; set; }
         public ILogin Login { get; set; }
         public string ProfilePic { get; set; }
-        public  IEnumerable<IUserTest> Tests { get; set; }
+        public  IEnumerable<Test> Tests { get; set; }
         
     }
 }

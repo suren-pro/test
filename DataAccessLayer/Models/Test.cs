@@ -11,6 +11,7 @@ namespace DataAccessLayer.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public string Timer { get; set; }
+        public IEnumerable<IQuestion> Questions { get; set; }
         public DateTime Date { get; set; }
         public string Deadline { get; set; }
         public int RequiredGrade { get; set; }
@@ -18,8 +19,7 @@ namespace DataAccessLayer.Models
         public string Result { get; set; }
         public int Status { get; set; }
         public int[] LeftTryes { get; set; }
-        public int[] TestTryes { get; set; }
-        public IEnumerable<IQuestion> Questions { get; set; }
+        public int[] Tryes { get; set; }
         
     }
 }

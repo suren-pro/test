@@ -44,7 +44,7 @@ namespace DataAccessLayer
                 return test;
             }
         }
-        public IEnumerable<IUserTest> GetTestsProfile(int id)
+        public IEnumerable<Test> GetTestsProfile(int id)
         {
             List<UserTest> tests = new List<UserTest>();
             using (MySqlCommand cmd = new MySqlCommand())

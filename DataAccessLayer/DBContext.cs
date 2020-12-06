@@ -21,9 +21,6 @@ namespace DataAccessLayer
         public ITestContext TestContext { get; set; }
         public IUserContext UserContext { get; set; }
         public IQuestionContext QuestionContext { get; set; }
-        public IDepartmentContext DepartmentContext { get; set; }
-        public IUnitContext UnitContext { get; set; }
-        public IPositionContext PositionContext { get; set; }
 
         public void Dispose()
         {
