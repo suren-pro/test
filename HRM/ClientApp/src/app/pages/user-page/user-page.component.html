@@ -1,0 +1,75 @@
+<div class="wrapper">
+
+  <!-- navbar -->
+  <div class="navbar">
+
+    <div class="companyLogo">
+      <a style="padding: 8px;"><img width="55" height="35" src="../../../assets/images/logo.png" alt="Logo"></a>
+      <a style="color: white;">Company Name</a>
+    </div>
+
+    <div class="responsiveButton" (click)="userMenu = !userMenu">
+      <svg width="35px" height="35px" viewBox="0 0 16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+      </svg>
+    </div>
+
+    <div class="userButton" (click)="userMenu = !userMenu">
+      <div style="color: white;">{{user.firstName}} {{user.lastName}}</div>
+      <div><img class="userLogo" width="35" height="35" [src]="user.profilePic" alt=""></div>
+    </div>
+   
+  </div>
+
+  <div class="content">
+
+    <div class="userMenu" *ngIf="userMenu">
+      <p style="font-size: 15px; color: rgb(99, 99, 99);" >{{user.firstName}} {{user.lastName}}</p>
+      <!-- <a class="userMenuLink"></a> -->
+      <button style="margin-bottom: 5px;" type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#exampleModal">Կարգավորումներ</button>
+      <button type="button" class="btn btn-outline-primary btn-sm userMenuLink logoutButton" data-toggle="modal" data-target="#userlogoutModal" >Դուրս գալ</button>
+    </div>
+
+    <router-outlet></router-outlet>
+
+  </div>
+
+
+  <!--userlogout modal start -->
+  <div class="modal fade" id="userlogoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          Դուք արդյոք ցանկանում եք դուրս գալ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Ոչ</button>
+          <button type="button" class="btn btn-success"  data-dismiss="modal" (click)="onLogOut()">Այո, իհարկե</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal end -->
+
+  <!-- settings -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Կարգավորումներ</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label>Ներբեռնեք լուսանկար</label>
+          <input type="file" (change)="onUploadProfilePicture($event)">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Փակել</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

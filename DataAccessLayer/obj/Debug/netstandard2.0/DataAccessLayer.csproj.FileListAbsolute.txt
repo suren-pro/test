@@ -1,0 +1,4 @@
+D:\PayX\Projects\Hrm testing staff\HRM\DataAccessLayer\bin\Debug\netstandard2.0\IModelRepository.dll
+D:\PayX\Projects\Hrm testing staff\HRM\DataAccessLayer\obj\Debug\netstandard2.0\DataAccessLayer.csprojAssemblyReference.cache
+D:\PayX\Projects\Hrm testing staff\HRM\DataAccessLayer\obj\Debug\netstandard2.0\DataAccessLayer.AssemblyInfoInputs.cache
+D:\PayX\Projects\Hrm testing staff\HRM\DataAccessLayer\obj\Debug\netstandard2.0\DataAccessLayer.AssemblyInfo.cs

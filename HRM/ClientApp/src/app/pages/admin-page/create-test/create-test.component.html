@@ -1,0 +1,182 @@
+<div class="wrapper">
+    <!-- header -->
+    <div style="display: flex; flex-direction: row;">
+        <div style="flex-direction: 2; align-self: center;">
+        <button type="button" class="btn btn-outline-secondary btn-sm mr-1" data-toggle="modal" data-target="#newQuestion" (click)="this.newQuestionToggle = !this.newQuestionToggle">
+            Նոր հարց
+        </button>
+        <button type="button" class="btn btn-outline-secondary btn-sm mr-1" data-toggle="modal" data-target="#newTest" (click)="newTestToggle = !newTestToggle">
+            Նոր թեստ
+        </button>
+        </div>
+
+    </div>
+    <!-- --------- -->
+
+    <ul class="nav nav-tabs mt-2">
+        <li class="nav-item">
+        <a class="nav-link" [class.active]=questionTabToggle (click)="questionTabToggle = true; testTabToggle = false">Հարցեր</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" [class.active]=testTabToggle (click)="questionTabToggle = false; testTabToggle = true">Թեստեր</a>
+        </li>
+    </ul>
+
+    <!-- questions tab -->
+    <div class="mt-2" *ngIf="questionTabToggle">
+        <div class="content">
+        <ul style="width: 100%;" class="list-group">
+
+            <li class="list-group-item" *ngFor="let question of questions; let i = index">
+              <p>
+                  <span style="cursor: pointer;" (click)="openQuestionContent(i)"><span class="text-primary">{{question.questionTitle}}</span></span>
+                  <span style="float: right;">
+                      <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#updateQuestion" (click)="updateQuestion(question)">Փոփոխել հարցը</button>
+                      <button class="btn btn-danger btn-sm ml-2" (click)="removeQuestion(question.id)">Հեռացնել հարցը</button>
+                  </span>
+              </p>
+
+              <!-- տակի բացվող փակվող մասերը -->
+              <div id="{{'questionContent' + i}}" class="panel">
+                <span>Հնարավոր Պատասխաններ : </span>
+                  <div *ngFor="let answer of question.answers">
+                    {{answer}}
+                  </div>
+
+                  <div>
+                    <span class="text-primary">Ճիշտ պատասխան</span>
+                    <ul>
+                        <li *ngFor="let rightAnswer of question.rightAnswers">
+                        {{question.answers[rightAnswer]}}
+                        </li>
+                    </ul>
+                  </div>
+              </div>
+
+            </li>
+
+        </ul>
+        </div>
+    </div>
+
+    <!-- tests tab -->
+    <div class="mt-2" *ngIf="testTabToggle">
+        <div class="content">
+        <ul style="width: 100%;" class="list-group">
+            <li class="list-group-item" *ngFor="let test of tests; let i = index">
+            <p>
+                <span style="cursor: pointer;" (click)="openTestContent(i)"><span class="text-primary">Թեսթի անվանումը: </span>{{test.title}}</span>
+                <span style="float: right;">
+                <button class="btn btn-danger btn-sm" (click)="removeTest(test.id)">Հեռացնել թեստը</button>
+                </span>
+            </p>
+
+            <!-- տակի բացվող փակվող մասերը -->
+            <div id="{{'testContent' + i}}" class="panel">
+              <span>Թեստի կարագրությունը: <span>{{test.description}}</span></span>
+              <br>
+              <span>Թեստի հանձման ժամանակ <span>{{test.timer.minutes}} րոպե:{{test.timer.seconds}} վարկյան</span></span>
+              <br>
+              <span>Առավելագույն միավորներ կամ կշիռ
+                <span>{{test.maxGrade}}
+                  <span *ngIf="test.checkingType == testCheckingTypeEnumList.percent"> %</span>
+                  <span *ngIf="test.checkingType == testCheckingTypeEnumList.grade"> միավոր</span>
+                </span>
+              </span>
+              <br>
+              <span>Բավարար միավորներ  կամ կշիռ
+                <span>{{test.requiredGrade}}
+                  <span *ngIf="test.checkingType == testCheckingTypeEnumList.percent"> %</span>
+                  <span *ngIf="test.checkingType == testCheckingTypeEnumList.grade"> միավոր</span>
+                </span>
+              </span>
+              <br>
+              <span>Գնահատման միավորը
+                <span *ngIf="test.checkingType == testCheckingTypeEnumList.percent">տոկոս (%)</span>
+                <span *ngIf="test.checkingType == testCheckingTypeEnumList.grade"> միավոր</span>
+              </span>
+              <br>
+              <span>Հարցեր`</span>
+              <ul>
+                  <li *ngFor="let question of test.questions">
+                      <span>{{question.questionTitle}}</span>
+                  </li>
+              </ul>
+            </div>
+
+            </li>
+        </ul>
+        </div>
+    </div>
+</div>
+
+  <!-- //////////////////////////////// Add New Question Modal ///////////////////////////////////////////////// -->
+  <div class="modal" id="newQuestion" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Նոր հարց</h5>
+          <button id="newQuestionModalCloseButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-new-question (closeNewQuestionModal)="closeNewQuestionModal($event)" [newQuestionToggle]="newQuestionToggle"></app-new-question>
+          <button style="float: right; margin-top: 5px;" type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Փակել</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+  <!-- ////////////////////////////////// Add New Test Modal////////////////////////////////////////////////// -->
+  <div class="modal" id="newTest" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Նոր Թեսթ</h5>
+          <button id="newTestModalCloseButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <app-new-test (closeNewTestModal)="closeNewTestModal($event)" [newTestToggle]="newTestToggle"></app-new-test>
+            <button style="float: right; margin-top: 5px;" type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Փակել</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+  <!--//////////////////////////// question update modal ////////////////////////////-->
+  <div class="modal fade" id="updateQuestion" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Հարց</h5>
+          <button id="updateQuestionModalCloseButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-new-question (closeUpdateQuestionModal)="closeUpdateQuestionModal($event)" [currenQuestion]="currenQuestion"></app-new-question>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Փակել</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+
+
+
+
+
+
+
+

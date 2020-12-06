@@ -1,0 +1,65 @@
+<!-- <a routerLink="/user/home">back</a> -->
+
+<p class="timer" >{{minutes}} <small>m</small> : {{seconds}} <small>s</small></p>
+<button *ngIf="!finishAndGoBackToggle" class="btn btn-danger finishButton" data-toggle="modal" data-target="#finishModal">Ավարտել</button>
+<button *ngIf="finishAndGoBackToggle" class="btn btn-info goBackButton" (click)="goToHomePage()">Վերադարնալ գլխավոր էջ</button>
+
+
+<div *ngFor="let question of test.questions; let questionIndex=index">
+
+  <div class="mainQuestionBlock">
+
+    <div class="questionTitle">
+      <h5>{{question.questionTitle}}</h5>
+    </div>
+
+    <div *ngFor="let answer of question.answers; let i = index" (click)="onAnswerClick(question,i)" class="answers">
+
+      <div class="answer">
+        <input *ngIf="question.userAnswers[0] != i " type="radio" name="{{question.questionTitle}}" [id]="answer"
+                [value]="answer" [disabled]="isFinished">
+        <input *ngIf="question.userAnswers[0] == i" type="radio" checked name="{{question.questionTitle}}" [id]="answer"
+                [value]="answer" [disabled]="isFinished">
+        <div style="float: right;">
+          <img *ngIf="getAnswerIsError(i, question, questionIndex)" src="../../../../../../assets/icons/wrong.png" style="width: 20px; height: 20px">
+          <img *ngIf="getAnswerIsSuccess(i, question, questionIndex)" src="../../../../../../assets/icons/right.png" style="width: 20px;height: 20px">
+        </div>
+        <label >&nbsp;{{answer}} </label>
+      </div>
+
+      <!-- <div class="answer border">
+        <input *ngIf="question.userAnswers.indexOf(i) == -1" type="checkbox" name="{{question.questionTitle}}"
+                [id]="answer" [value]="answer">
+        <input *ngIf="question.userAnswers.indexOf(i) > -1" type="checkbox" name="{{question.questionTitle}}" checked
+                [id]="answer" [value]="answer">
+        <div style="float: right;">
+          <img *ngIf="getAnswerIsError(i)" src="../../../../../../assets/icons/wrong.png" style="width: 20px; height: 20px">
+          <img *ngIf="getAnswerIsSuccess(i)" src="../../../../../../assets/icons/right.png" style="width: 20px;height: 20px">
+        </div>
+          <label >&nbsp;{{answer}}</label>
+      </div> -->
+
+    </div>
+  </div>
+
+</div>
+
+<!-- finish modal -->
+<div class="modal fade" id="finishModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        Ավարտել թեսթը ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Ոչ</button>
+        <button type="button" class="btn btn-primary" (click)="finish()" data-dismiss="modal">Այո </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

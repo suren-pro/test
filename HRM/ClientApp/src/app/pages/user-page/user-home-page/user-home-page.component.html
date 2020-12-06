@@ -1,0 +1,103 @@
+<div class="wrapper">
+
+  <div class="test" *ngFor="let test of user.tests; let i=index">
+
+    <div>
+      <span>
+        <span style="color: rgb(25, 88, 79);"><span><i><b>Թեստ {{i+1}} : </b></i></span><i><b>{{test.title}}</b></i></span>
+        <span style="float: right;"><span style="color: rgb(74, 100, 74);">Վերջնաժամկետ :</span><span>{{test.deadline}}</span></span>
+      </span>
+    </div>
+
+    <div>
+      <span style="color: rgb(0, 47, 255);" class="boxContent" *ngIf="test.status == statusEnumList.notstarted"><b>Not Started</b></span>
+      <span style="color: rgb(14, 168, 14);" class="boxContent" *ngIf="test.status == statusEnumList.done"><b>Done</b></span>
+      <span style="color: red;" class="boxContent" *ngIf="test.status == statusEnumList.failed"><b>Failed</b></span>
+      &nbsp;
+      <span style="color: rgb(41, 87, 146);" *ngIf="test.result != null">
+        {{test.result}}
+        <span *ngIf="test.checkingType == testCheckingTypeEnumList.percent">%</span>
+        <span *ngIf="test.checkingType == testCheckingTypeEnumList.grade"> միավոր</span>
+      </span>
+      &nbsp;
+      <span style="color: rgb(45, 11, 138);">{{test.date}}</span>
+      &nbsp;
+      <span>
+        <span style="text-decoration: none; cursor: pointer; color: blue;" id="1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Թեստի գնահատման կարգ
+        </span>
+        <div class="dropdown-menu" aria-labelledby="1">
+          <span class="dropdown-item"><span>Առավելագույն միավորներ կամ կշիռ : </span><span>{{test.requiredGrade}}</span> </span>
+          <span class="dropdown-item" ><span>Բավարար միավորներ  կամ կշիռ : </span><span>{{test.maxGrade}}</span></span>
+          <span class="dropdown-item" ><span><span>Գնահատման միավորը : </span>
+            <span *ngIf="test.checkingType == testCheckingTypeEnumList.percent">Տոկոս(%)</span>
+            <span *ngIf="test.checkingType == testCheckingTypeEnumList.grade">Միավոր</span>
+          </span>
+            <span></span>
+          </span>
+        </div>
+      </span>
+    </div>
+
+    <div>
+      <span><span>Հնարավոր Փորձերի քանակը: </span>{{test.leftTryes}}</span>
+    </div>
+
+    <div style="margin-bottom: 10px;">
+      <span class="startButton">
+        <button type="button" class="btn btn-success btn-sm" (click)="gotoTest(test.id)" [disabled]="test.status == statusEnumList.failed || test.status == statusEnumList.done">Սկսել Թեստը</button>
+      </span>
+      &nbsp;
+      <span class="tryButton">
+        <button type="button" class="btn btn-info btn-sm" (click)="gotoTestLearn(test.id)">Փորձել</button>
+      </span>
+      &nbsp;
+      <span class="termsAndBooks">
+        <a style="color: blue; cursor: pointer;" (click)="show(i, 'tries')">Կարատված փորձերը</a>
+        &nbsp;
+        <a style="color: blue; cursor: pointer;" (click)="show(i, 'materials')">Նյութեր</a>
+        &nbsp;
+        <a style="color: blue; cursor: pointer;" (click)="show(i, 'terms')">Terms</a>
+      </span>
+    </div>
+
+    <div [id]="i + 'terms'"  class="terms">
+      <ul style="list-style: none;">
+        <li class="listItem">terms</li>
+        <li class="listItem">terms</li>
+        <li class="listItem">terms</li>
+      </ul>
+    </div>
+
+    <div [id]="i + 'materials'" class="materials">
+      <ul style="list-style: none;">
+        <li class="listItem"><a href="./../../../../assets/files/1.pdf" target="blank">book</a></li>
+        <li class="listItem"><a href="./../../../../assets/files/2.pdf" target="blank">book</a></li>
+      </ul>
+    </div>
+
+    <div [id]="i + 'tries'" class="tries">
+      <div *ngFor="let try of test.tryes">
+        <span>
+          <span>{{try.result}}
+            <span *ngIf="test.checkingType == testCheckingTypeEnumList.percent">%</span>
+            <span *ngIf="test.checkingType == testCheckingTypeEnumList.grade">Միավոր</span>
+          </span>
+          &nbsp;
+          <span style="color: rgb(0, 47, 255);" class="boxContent" *ngIf="try.status == statusEnumList.notstarted"><b>Not Started</b></span>
+          <span style="color: rgb(14, 168, 14);" class="boxContent" *ngIf="try.status == statusEnumList.done"><b>Done</b></span>
+          <span style="color: red;" class="boxContent" *ngIf="try.status == statusEnumList.failed"><b>Failed</b></span>
+          &nbsp;
+          <span>{{try.date}}</span>
+          <span style="margin-left: 5px;">
+            <button style="margin-right: 5px; height: 20px !important; font-size: 12px !important; padding: 0 !important; padding-left: 2px !important; padding-right: 2px !important;" type="button" class="btn btn-outline-danger btn-sm">Remove</button>
+          </span>
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+

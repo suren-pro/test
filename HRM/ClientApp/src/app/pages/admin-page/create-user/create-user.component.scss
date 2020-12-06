@@ -1,0 +1,32 @@
+.wrapper{
+  padding-top: 15px;
+  padding-left: 8px;
+}
+.panel {
+    padding: 0 3px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+    // height: 150px;
+  }
+  .dropdownButton{
+    height: 31px;
+    padding: 3px 12px;
+    background-color: white;
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 4px;
+    outline: none;
+    color: #585b5f;
+    text-align: left;
+  }
+  .dropdownButton:focus{
+    border: 1px solid #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  }
+  .departmentsWrapperDiv{
+    width: 100%; 
+    padding: 12px; 
+    border: 1px solid rgb(134, 134, 134); 
+    border-radius: 0; 
+    overflow-y: scroll;
+  }

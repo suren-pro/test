@@ -1,0 +1,173 @@
+.wrapper{
+  height: 100vh;
+  background-image: url("../../../assets/images/mainBackground.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgba(53, 53, 53, 0.205);
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  color: white;
+  // background-color: rgba(17, 17, 17, 0.356);
+  cursor: pointer;
+}
+.loginTransparent{
+  background-color: rgba(255, 255, 255, 0.63) !important;
+}
+
+
+//////////////// login ////////////////////
+.login{
+  form{
+    .error{
+      color: red;
+      float: right;
+      font-size: 12px;
+    }
+    span{
+      float: right;
+      a{
+        // color: rgb(100, 141, 255);
+        color: #17a3b8bb;
+      }
+      :hover{
+        cursor: pointer;
+      }
+    }
+  }
+  .inputBackground{
+    background-color: rgba(255, 255, 255, 0.452) !important;
+  }
+  .forgotPassword{
+    float: right;
+    // color: #17a3b8bd;
+    color: #007bff;
+    :hover{
+      cursor: pointer;
+      color: blue;
+    }
+  }
+}
+.back{
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 10px;
+  // float: right;
+  span{
+    a{
+      float: right;
+      // color: rgb(100, 141, 255);
+      // color: #17a3b8bd;
+      color: #007bff;
+    }
+    :hover{
+      cursor: pointer;
+      color: blue;
+    }
+  }
+}
+.backButton{
+  float: left;
+  span{
+    color: #17a3b8bd;
+  }
+  span:hover{
+    cursor: pointer;
+    color: blue;
+  }
+}
+.welcome{
+  width: 100%;
+  margin: 0px auto;
+  text-align: right;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  h5{
+    color: rgb(141, 169, 172);
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .login{
+    width: 70%;
+    max-height: 350px;
+    form{
+      span{
+        float: left;
+      }
+    }
+  }
+  .back{
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 380px) {
+  // .wrapper{
+  //   width: 240px;
+  // }
+  .login{
+    height: 280px;
+  }
+}
+@media only screen and (max-width: 344px) {
+  .login{
+    height: 310px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .login{
+    height: 315px;
+  }
+  .forgotPassword{
+    margin-top: 8px;
+  }
+}
+@media only screen and (max-width: 300px) {
+  .login{
+    height: 335px;
+  }
+  .forgotPassword{
+    margin-top: 8px;
+  }
+}
+@media only screen and (max-width: 250px) {
+  .login{
+    min-height: 50%;
+  }
+}
+@media only screen and (max-width: 194px) {
+  .login{
+    min-height: 51%;
+  }
+}
+@media only screen and (max-width: 190px) {
+  .login{
+    min-height: 55%;
+  }
+}
+@media only screen and (max-width: 170px) {
+  .login{
+    min-height: 58%;
+  }
+}

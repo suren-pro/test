@@ -1,0 +1,63 @@
+<form [formGroup]="form" (ngSubmit)="addNewUser()">
+
+    <div class="form-group">
+        <label for="exampleFormControlInput1">First Name</label>
+        <input type="text" class="form-control" placeholder="first name" formControlName="firstname">
+        <p class="error" *ngIf="form.get('firstname').touched && form.get('firstname').invalid">Please enter First Name</p>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Last Name</label>
+        <input type="text" class="form-control" placeholder="Last Name" formControlName="lastname">
+        <p class="error" *ngIf="form.get('lastname').touched && form.get('lastname').invalid">Please enter Last Name</p>
+
+    </div>
+
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Email address</label>
+        <input type="email" class="form-control" placeholder="name@example.com" formControlName="email">
+        <p class="error" *ngIf="form.get('email').touched && form.get('email').hasError('required')">Please enter email</p>
+        <p class="error" *ngIf="form.get('email').touched && form.get('email').hasError('email')">Please enter Valid email</p>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Password</label>
+        <input type="password" class="form-control" placeholder="password" formControlName="password">
+        <p class="error" *ngIf="form.get('password').touched && form.get('password').hasError('required')">Please enter password</p>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Phone Number</label>
+        <input type="phone" class="form-control" placeholder="Phone Number" formControlName="phone">
+        <p class="error" *ngIf="form.get('phone').touched && form.get('phone').invalid">Please enter phone number</p>
+    </div>
+
+    <div class="form-group">
+        <label >Role</label>
+        <select class="form-control" formControlName="role">
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+        </select>
+    </div>
+
+    <button *ngIf="!updateToggle" type="submit" class="btn btn-success btn-sm" [disabled]="form.invalid" (click)="closeModal()">Ավելացնել օգտատեր</button>
+    <button *ngIf="updateToggle" type="submit" class="btn btn-success btn-sm" >Փոփոխել</button>
+    <button style="float: right;" type="button" class="btn btn-secondary btn-sm" (click)="closeModal()">Փակել</button>
+
+</form>
+
+
+<!-- ////////////////////   notification enter password /////////////////// -->
+<!-- The Modal -->
+<div class="modal" *ngIf="passwordErrorToggle">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close" (click)="passwordErrorToggle = !passwordErrorToggle">&times;</span>
+      <p style="text-align: center; margin-top: 20px;">Please Enter Password</p>
+    </div>
+</div>
+  <!-- ///////////////////////////////////////////////////////////////////////////////////////// -->
+
+<ng-template #loadBlock >
+  loading ...
+</ng-template>

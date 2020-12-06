@@ -1,0 +1,176 @@
+<div class="wrapper" *ngIf="users; else loadBlock">
+
+    <div style="display: flex; flex-direction: row;">
+        <button  type="button" class="btn btn-outline-secondary btn-sm mr-1" data-toggle="modal" data-target="#newUser" (click)="newUserToggle = !newUserToggle">
+            Ավելացնել Օգտատեր
+        </button>
+        <button type="button" class="btn btn-outline-secondary btn-sm mr-1" data-toggle="modal" data-target="#addcompany">
+            Ավելացնել կազմակերպություն
+        </button>
+        <input type="text" placeholder=" Փնտրել" [(ngModel)]="searchUser" (change)="userSearch()">
+    </div>
+
+    <!-- users list -->
+    <ul class="list-group mt-2">
+        <li class="list-group-item" *ngFor="let user of userSearch() ; let i=index">
+
+            <p style="margin: 0;">
+                <span style="cursor: pointer;" class="text-primary" (click)="openUserInfo(i)">{{user.firstName}} {{user.lastName}}</span>
+
+                <span style="float: right;">
+                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#updateUser" (click)="currentUser = user">
+                        Փոփոխել
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm ml-2" (click)="removeUser(user.id)">Հեռացնել</button>
+                </span>
+
+                <span style="float: right;">
+                    <button type="button" class="btn btn-outline-info btn-sm ml-2" data-toggle="modal" data-target="#usertests" (click)="currentUser2 = user">Ավելացնել թեստ</button>
+                    <button type="button" class="btn btn-outline-info btn-sm ml-2 mr-2" data-toggle="modal" data-target="#results" (click)="currentUser2 = user">Արդյունքները</button>
+                </span>
+
+            </p>
+            <div id="{{'user' + i}}" class="panel">
+                <p style="margin: 0;"><span class="text-primary">Email: </span>{{user.login.email}}</p>
+                <p style="margin: 0;"><span class="text-primary">Phone Number: </span>{{user.phone}}</p>
+                <p style="margin: 0;"><span class="text-primary">Role: </span> {{user.role}}</p>
+            </div>
+        </li>
+    </ul>
+
+    <!-- New User Modal -->
+    <div class="modal fade" id="newUser" data-backdrop="static" tabindex="-1" aria-labelledby="newUser" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newUser">Նոր օգտատեր</h5>
+                <button id="closeNewUserModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <app-new-user [newUserToggle]="newUserToggle" (closeNewUserModal)="closeNewUserModal($event)" (newUser)="addNewUserInArray($event)"></app-new-user>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Update User Modal -->
+    <div class="modal fade" id="updateUser" data-backdrop="static" tabindex="-1" aria-labelledby="updateUser" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateUser">Փոփոխել</h5>
+                <button id="closeUpdateUserModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <app-new-user [currentUser]="currentUser" (closeUpdateModal)="closeUpdateModal($event)"></app-new-user>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- user tests -->
+    <div class="modal fade" id="usertests" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Աավելացնել թեստեր</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let test of tests">
+                        <span>
+                            {{test.title}}
+                            <button style="float: right;" type="button" class="btn btn-success btn-sm ml-2"
+                            [disabled]="alreadyAdded(test)"
+                            (click)="onSetUserTest(test)"
+                            >Ավելացնել</button>
+                            <button style="float: right;" type="button" class="btn btn-danger btn-sm ml-2"
+                            [disabled]="!alreadyAdded(test)"
+                            (click)="onRemoveUserTest(test)"
+                            >Հեռացնել</button>
+                            <input style="float: right;" class="ml-2" type="date" #date (change)="setDeadline(date.value)">
+                            <!-- <label style="float: right;" class="ml-2">Հանձնման վերջնաժամկետը</label> -->
+                            <span style="float: right; color: green;" *ngIf="alreadyAdded(test)">Արկա է</span>
+                            <span style="float: right; color: red;" *ngIf="!alreadyAdded(test)">Արկա չէ</span>
+                        </span>
+                    </li>
+                  </ul>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Փակել</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- user results -->
+    <div class="modal fade" id="results" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Արդյունքներ</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <ul *ngIf="currentUser2" class="list-group">
+                    <li class="list-group-item" *ngFor="let test of currentUser2.tests">
+                        <span>
+                          Թեստի անվանումը։ {{test.title}}
+                          Արդյունք։ {{test.result}}
+                          Ստատուս։ {{test.status}}
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Փակել</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- add company modal -->
+    <div class="modal fade" id="addcompany" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ավելացնել կազմակերպություն</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="form-control mb-2" placeholder="Կազմակերպության անվանումը" [(ngModel)]=companyName>
+                <label for="">Կազմակերպության լոգո</label>
+                <input type="file"  (change)="onLogoUpload($event)">
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Փակել</button>
+            <button type="button" class="btn btn-primary" (click)="createCompany()" data-dismiss="modal">Ավելացնել</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #loadBlock >
+loading ...
+</ng-template>

@@ -1,0 +1,133 @@
+.error{
+  color: red;
+  font-size: 11px;
+}
+.margin{
+  margin-bottom: 0.5em;
+}
+.displayFlex{
+  display: flex;
+  flex-direction: column;
+}
+
+.hide{
+display: none;
+}
+.dropdownButton{
+height: 38px;
+padding: 6px 12px;
+background-color: white;
+border: 1px solid rgb(206, 206, 206);
+border-radius: 4px;
+outline: none;
+color: #585b5f;
+text-align: left;
+}
+.dropdownButton:focus{
+border: 1px solid #80bdff;
+box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+.departmentsWrapperDiv{
+width: 100%;
+padding: 12px;
+border: 1px solid rgb(134, 134, 134);
+border-radius: 0;
+overflow-y: scroll;
+}
+// /////// error notification ////////////
+// /* The Modal (background) */
+.modal {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%; /* Could be more or less, depending on screen size */
+  display: block;
+}
+
+/* The Close Button */
+.close {
+  // color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+//////////////////////////////
+
+// /////// add question modal ////////////
+// /* The Modal (background) */
+.addQuestionModal {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1; /* Sit on top */
+left: 0;
+top: 0;
+width: 100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgb(0,0,0); /* Fallback color */
+background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.addQuestionModal-content {
+background-color: #fefefe;
+margin: 3% auto; /* 15% from the top and centered */
+// padding: 20px;
+border: 1px solid #888;
+width: 90%; /* Could be more or less, depending on screen size */
+// height: 90%;
+// display: block;
+border-radius: 5px;
+}
+
+/* The Close Button */
+.addQuestionModalClose {
+float: right;
+}
+
+// .addQuestionModalClose:hover,
+// .addQuestionModalClose:focus {
+//   color: black;
+//   text-decoration: none;
+//   cursor: pointer;
+// }
+
+.header{
+padding: 16px;
+border-bottom: 1px solid #dee2e6;
+display: flex;
+flex-direction: row;
+}
+.filters{
+padding: 12px;
+border-bottom: 1px solid #dee2e6;
+}
+.innerContent{
+padding: 12px;
+max-height: 500px;
+overflow-y: scroll;
+border-bottom: 1px solid #dee2e6;
+}
+//////////////////////////////

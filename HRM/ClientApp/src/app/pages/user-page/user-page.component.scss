@@ -1,0 +1,99 @@
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  //// disable page scroll
+  // height: 100vh;
+  ///////////////////////
+}
+.content{
+  height: 100vh;
+  //// content scroll
+  // overflow-y: scroll;
+  ///////////////////
+  width: 100%;
+  margin-top: 45px;
+}
+// navbar
+.navbar{
+  display: flex;
+  // flex-direction: row;
+  // align-items: center;
+  // height: auto;
+  position: fixed;
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  // background-color: rgb(69, 42, 94);
+  background-color:  rgb(34, 138, 65);
+}
+///// user menu /////
+.userLogo{
+  border-radius: 50%;
+  border: 1px solid rgb(26, 100, 48);
+  margin: 5px;
+}
+.userMenu{
+  position: fixed;
+  right: 0;
+  background-color: rgba(245, 245, 245, 0.932);
+  width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(167, 167, 167, 0.2);
+  z-index: 1;
+  margin-right: 10px;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+}
+.userButton{
+  float: right;
+  cursor: pointer;
+  height: 52px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.userButton:hover div{
+  // color: yellow !important;
+  color: rgb(255, 198, 77) !important;
+}
+.logoutButton{
+  // background-color: rgb(70, 59, 78) !important;
+  background-color: rgb(34, 138, 65) !important;
+  color: white !important;
+  border: none;
+  // float: right;
+  cursor: pointer;
+}
+.logoutButton:focus {
+  outline: none;
+}
+.logoutButton:hover{
+  // color: yellow !important;
+  color: rgb(255, 198, 77) !important;
+}
+.responsiveButton{
+  display: none;
+  padding: 8px;
+  cursor: pointer;
+  color: white;
+}
+.responsiveButton:hover{
+  color: rgb(255, 198, 77);
+}
+@media only screen and (max-width: 400px) {
+  .responsiveButton{
+    display: block;
+  }
+  .userButton{
+    display: none;
+  }
+}
+@media only screen and (max-width: 250px) {
+  .companyLogo{
+    display: none;
+  }
+}

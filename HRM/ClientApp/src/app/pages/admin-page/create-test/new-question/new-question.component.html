@@ -1,0 +1,64 @@
+<!-- question title -->
+<input type="text" class="form-control margin" placeholder="Մուտքագրեք հարցը" [(ngModel)]="questionTitle">
+
+
+<!-- add answers -->
+<div class="displayFlex margin">
+    <input type="text" class="form-control margin" placeholder="Մուտքագրեք պատասխանը" [(ngModel)]="answer">
+    <button type="button" class="btn btn-outline-success btn-sm" (click)="onAddAnswer()">Ավելացնել պատասխան</button>
+    <!-- *ngIf="questionAnswerType == 1" -->
+    <ul class="list-group" #answersElement >
+        <li class="list-group-item" *ngFor="let answer of answers; let i=index">
+            <input type="radio" name="name">
+            {{answer}}
+            <button style="float: right;" type="button" class="btn btn-danger btn-sm" (click)="onRemoveAnswer(i)">Հեռացնել պատասխանը</button>
+        </li>
+    </ul>
+    <!-- *ngIf="questionAnswerType == 2" -->
+    <!-- <ul class="list-group" #answersElement>
+        <li class="list-group-item" *ngFor="let answer of answers; let i=index">
+            <input type="checkbox">
+            {{answer}}
+            <button style="float: right;" type="button" class="btn btn-danger btn-sm" (click)="onRemoveAnswer(i)">Remove Answer</button>
+        </li>
+    </ul> -->
+</div>
+
+<button type="button" class="btn btn-success btn-sm" *ngIf="!updateToggle" (click)="onAddQuestion()">Ավելացնել հարցը</button>
+<button type="button" class="btn btn-success btn-sm" *ngIf="updateToggle" (click)="onAddQuestion()">Փոփոխել հարցը</button>
+
+
+<!-- ////////////////////   notification invalid question /////////////////// -->
+<!-- The Modal -->
+<div id="myModal" class="modal" *ngIf="addAnswerErrorToggle">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close" (click)="addAnswerErrorToggle = !addAnswerErrorToggle">&times;</span>
+      <p style="text-align: center; margin-top: 20px;">Մուտքագրեք պատասխան</p>
+    </div>
+</div>
+  <!-- ///////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!-- ////////////////////   notification invalid question /////////////////// -->
+<!-- The Modal -->
+<div id="myModal" class="modal" *ngIf="invalidQuestionModalToggle">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close" (click)="invalidQuestionModalToggle = !invalidQuestionModalToggle">&times;</span>
+    <p style="text-align: center; margin-top: 20px;">Ընտրեք ճիշտ պատասխանը</p>
+  </div>
+
+</div>
+<!-- ///////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!-- ////////////////////   notification invalid question /////////////////// -->
+<!-- The Modal -->
+<div id="myModal" class="modal" *ngIf="dublicateAnswerErrorToggle">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close" (click)="dublicateAnswerErrorToggle = !dublicateAnswerErrorToggle">&times;</span>
+      <p style="text-align: center; margin-top: 20px;">Սխալ: կրկնվող պատասխան</p>
+    </div>
+</div>
+  <!-- ///////////////////////////////////////////////////////////////////////////////////////// -->

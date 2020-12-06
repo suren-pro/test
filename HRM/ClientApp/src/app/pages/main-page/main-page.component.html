@@ -1,0 +1,45 @@
+<div class="wrapper">
+  <ul>
+    <!-- <li><a href="#contact">Staff Testing</a></li> -->
+    <!-- <li><a href="#about">About</a></li> -->
+    <li style="float: right;"><a data-toggle="modal" data-target="#exampleModal">Մուտք</a></li>
+  </ul>
+
+  <!-- login -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content loginTransparent">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Մուտք</h5>
+          <button id="closeLoginButton" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="login">
+            <form [formGroup]="form" (ngSubmit)="OnLogin()">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Էլեկտրոնային փոստ</label>
+                <input type="email" class="form-control inputBackground" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email">
+                <p class="error" *ngIf="form.get('email').touched && form.get('email').invalid">
+                  <span  *ngIf="form.get('email').errors['required']">Խնդրում ենք մուտքագրել էլէկտրոնային փոստի հասցե</span>
+                  <span  *ngIf="form.get('email').errors['email']">Խնդրում ենք մուտքագրել ճիշտ էլէկտրոնային փոստի հասցե</span>
+                </p>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Գաղտնաբառ</label>
+                <input type="password" class="form-control inputBackground" id="exampleInputPassword1" formControlName="password">
+                <p class="error" *ngIf="form.get('password').touched && form.get('password').invalid">
+                  <span *ngIf="form.get('password').errors['required']">Խնդրում ենք մուտքագրել գաղտնաբառ</span>
+                </p>
+              </div>
+              <button type="submit" class="btn btn-outline-dark btn-sm" [disabled]="form.invalid">Մուտք</button>
+            </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

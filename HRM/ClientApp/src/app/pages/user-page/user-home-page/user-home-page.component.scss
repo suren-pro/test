@@ -1,0 +1,104 @@
+.terms{
+  display: none;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-top: 1px solid rgb(192, 192, 192);
+  /////////////////
+  // height: 100px;
+  // overflow-y: scroll;
+  //////////////////
+}
+// .listItem{
+//   color: rgb(77, 60, 148);
+// }
+.materials{
+  display: none;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-top: 1px solid rgb(192, 192, 192);
+  /////////////////
+  // height: 100px;
+  // overflow-y: scroll;
+  //////////////////
+}
+.tries{
+  display: none;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-top: 1px solid rgb(192, 192, 192);
+  /////////////////
+  // height: 100px;
+  // overflow-y: scroll;
+  //////////////////
+}
+///////////////////////////////////////////////////////////////////////////////////////
+.test{
+  background-color: #f7f7f7;
+  // min-height: 200px;
+  border: 1px solid rgb(168, 168, 168);
+  border-radius: 1em;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.test:hover{
+  box-shadow: 3px 2px 5px 4px rgba(59, 59, 59, 0.2);
+  background-color: #f1f1f1;
+}
+.termsAndBooks{
+  float: right;
+}
+@media only screen and (max-width: 577px) {
+  .test{
+    min-height: 168px;
+  }
+  .termsAndBooks{
+    float: left;
+  }
+  .startButton{
+    float: left;
+  }
+  .tryButton{
+    float: left;
+  }
+}
+@media only screen and (max-width: 440px) {
+  .test{
+    height: 190px;
+  }
+}
+@media only screen and (max-width: 470px) {
+  .test{
+    height: 210px;
+  }
+}
+@media only screen and (max-width: 347px) {
+  .test{
+    height: 220px;
+  }
+}
+@media only screen and (max-width: 336px) {
+  .test{
+    height: 230px;
+  }
+}
+@media only screen and (max-width: 333px) {
+  .test{
+    height: 255px;
+  }
+}
+@media only screen and (max-width: 324px) {
+  .test{
+    height: 275px;
+  }
+}
+@media only screen and (max-width: 312px) {
+  .test{
+    height: 300px;
+  }
+}

@@ -1,0 +1,82 @@
+<input type="text" class="form-control margin" placeholder="test title" [(ngModel)]="title">
+
+<input type="text" class="form-control margin" placeholder="test description" [(ngModel)]="discription">
+
+<select class="browser-default custom-select margin" [(ngModel)]="checkingType" >
+    <option value={{testCheckingTypeEnumLIst.percent}}>Տոկոս</option>
+    <option value={{testCheckingTypeEnumLIst.grade}}>Միավոր</option>
+</select>
+
+<input type="number" class="form-control margin" placeholder="Առավելագույն միավորներ  կամ կշիռ" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="maxGrade">
+
+<input type="number" class="form-control margin" placeholder="Բավարար միավորներ  կամ կշիռ" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="requiredGrade">
+
+<input type="number" class="form-control margin" placeholder="Հնարավոր փորձերի քանակ" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="leftTryes">
+
+
+<div class="margin">
+  <!-- <button class="dropdownButton btn-block" (click)="addQuestionModalToggle = true" >Add Questions</button> -->
+  <button class="dropdownButton btn-block" (click)="openAddQuestionModal()" >Ընտրել հարցեր</button>
+</div>
+
+<input class="form-control margin" type="number" placeholder="Րոպեներ" [(ngModel)]="minutes">
+<input class="form-control margin" type="number" placeholder="Վարկյաններ" [(ngModel)]="seconds">
+
+<button  type="button" class="btn btn-success btn-sm" (click)="onAddNewTest()">Ստեղծել Թեսթ</button>
+
+<!-- !-- ////////////////////   notification invalid test timer /////////////////// -->
+<!-- The Modal -->
+<div id="myModal" class="modal" *ngIf="testTimerErrorNotificationToggle">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close" (click)="testTimerErrorNotificationToggle = !testTimerErrorNotificationToggle">&times;</span>
+      <p style="text-align: center; margin-top: 20px;">Մուտքագրեք թեսթի հանձման ժամանակը</p>
+    </div>
+
+</div>
+<!-- ///////////////////////////////////////////////////////////////////////////////////////// -->
+
+  <!-- ////////////////////   notification no test questions /////////////////// -->
+  <!-- The Modal -->
+  <div id="myModal" class="modal" *ngIf="testQuestionsErrorNotificationToggle">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close" (click)="testQuestionsErrorNotificationToggle = !testQuestionsErrorNotificationToggle">&times;</span>
+      <p style="text-align: center; margin-top: 20px;">Ընտրեք Հարցեր</p>
+    </div>
+
+  </div>
+  <!-- ///////////////////////////////////////////////////////////////////////////////////////// -->
+
+  <!-- ////////////////////////////// Add Questions Modal //////////////////////////////////////// -->
+  <div id="addQuestionModal" class="addQuestionModal" >
+    <!-- Modal content -->
+    <div class="addQuestionModal-content">
+
+      <div class="header">
+        <div style="flex: 1;">
+          <h5 style="margin: 0;">Հարցերի ցուցակ</h5>
+        </div>
+        <svg style="cursor:pointer; float:right" (click)="closeAddQuestionModal()" width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+      </div>
+
+      <div class="innerContent">
+        <!-- questions list -->
+        <ul style="max-height: 90%; overflow-y: scroll;" class="list-group" #list>
+          <li class="list-group-item" *ngFor="let question of questions; let i=index" >
+            <label style="width: 100%; cursor: pointer;" [for]='i'>
+              <input [id]="i" type="checkbox" (click)="addQuestionInTest($event, question)">
+              {{question.questionTitle}}
+            </label>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+  <!-- ///////////////////////////////////////////////////////////////////////////////////////// -->
+
